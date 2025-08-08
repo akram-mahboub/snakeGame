@@ -7,7 +7,7 @@ const gameWidth = gameBoard.width ;
 const gameHeight = gameBoard.height ;
 
 const eatSound = new Audio("sounds/eat.mp3");
-const gameOverSound = new Audio("sounds/mylife.mp3");
+const gameOverSound = new Audio("sounds/FinalCredits.mp3");
 const bg = new Audio("sounds/bg.mp3");
 
 
@@ -282,7 +282,7 @@ function displayGameOver(){
   ctx.font = "21px MV Boli";
   ctx.fillStyle = "black";
   ctx.textAlign = "center";
-  ctx.fillText("iwaa adwi allah yarda elik ya abni ,", gameWidth / 2 - 10, gameHeight / 2 - 60 );
+  ctx.fillText("iwaa adwi allah yarda elik ya abni ,", gameWidth / 2 - 100, gameHeight / 2 - 60 );
 /*   ctx.fillText("zzzz", gameWidth / 2 - 10, gameHeight / 2 - 30 );
  */
   // Draw the image
@@ -314,4 +314,5 @@ function resetGame(){
 
 gameStart();
 };
+
 

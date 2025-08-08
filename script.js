@@ -282,7 +282,7 @@ function displayGameOver(){
   ctx.font = "21px MV Boli";
   ctx.fillStyle = "black";
   ctx.textAlign = "center";
-  ctx.fillText("iwaa adwi allah yarda elik ya abni ,", gameWidth / 2 - 100, gameHeight / 2 - 60 );
+  ctx.fillText("iwaa adwi allah yarda elik ya abni ,", gameWidth / 2 , gameHeight / 2 - 60 );
 /*   ctx.fillText("zzzz", gameWidth / 2 - 10, gameHeight / 2 - 30 );
  */
   // Draw the image
@@ -314,5 +314,6 @@ function resetGame(){
 
 gameStart();
 };
+
 
 

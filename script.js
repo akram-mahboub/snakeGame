@@ -282,9 +282,9 @@ function displayGameOver(){
   ctx.font = "21px MV Boli";
   ctx.fillStyle = "black";
   ctx.textAlign = "center";
-  ctx.fillText("My dear Kushina ,", gameWidth / 2 - 10, gameHeight / 2 - 60 );
-  ctx.fillText("you lose but Minato is still with you", gameWidth / 2 - 10, gameHeight / 2 - 30 );
-
+  ctx.fillText("iwaa adwi allah yarda elik ya abni ,", gameWidth / 2 - 10, gameHeight / 2 - 60 );
+/*   ctx.fillText("zzzz", gameWidth / 2 - 10, gameHeight / 2 - 30 );
+ */
   // Draw the image
   const img = document.getElementById("gameOverImg");
   ctx.fillRect(gameWidth / 2 - 104, gameHeight / 2 - 4, 208, 208); // border box slightly bigger than image
@@ -314,3 +314,4 @@ function resetGame(){
 
 gameStart();
 };
+

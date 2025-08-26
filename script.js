@@ -249,28 +249,27 @@ function changeDirection(event){
  };
 
 function checkGameOver(){
-  switch(true){
-    case(snake[0].x < 0):
-      running = false ;
-      break;
-    case(snake[0].x >= gameWidth):
-      running = false ;
-      break;
-    case(snake[0].y < 0):
-      running = false ;
-      break;
-    case(snake[0].y >= gameHeight):
-      running = false ;
-      break;
+  // Wrap snake position if it crosses boundaries
+  if (snake[0].x < 0) {
+    snake[0].x = gameWidth - unitSize; // wrap to right
   }
-  
-  for (i = 1 ; i < snake.length ; i+=1){
-    if(snake[i].x == snake[0].x && snake[i].y == snake[0].y){
-      running = false ;
+  else if (snake[0].x >= gameWidth) {
+    snake[0].x = 0; // wrap to left
+  }
+  else if (snake[0].y < 0) {
+    snake[0].y = gameHeight - unitSize; // wrap to bottom
+  }
+  else if (snake[0].y >= gameHeight) {
+    snake[0].y = 0; // wrap to top
+  }
+
+  // Check self collision (still game over)
+  for (let i = 1; i < snake.length; i++) {
+    if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) {
+      running = false;
     }
   }
-   
-};
+}
 
 function displayGameOver(){
   gameOverSound.volume = 0.2;
@@ -314,6 +313,7 @@ function resetGame(){
 
 gameStart();
 };
+
 
 
 

@@ -3,33 +3,53 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Snake Game</title>
+  <title>🐍 Retro Snake Game</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div id="gameContainer">
-    <h1>Snake Game
-    </h1>
-    <div class="btns">
-      <button id="startGame"> Play</button>
-      <button id="resetBtn">Reset</button>
-    </div><br>
-    <canvas id="gameBoard" height="500" width="500"></canvas>
-    <p id="scoreText">0</p>
-    <div id="controls">
-      <button id="up">⬆️</button>
-      <div>
-        <button id="left">⬅️</button>
-        <button id="down">⬇️</button>
-        <button id="right">➡️</button>
+  <div class="retro-container">
+    <div id="gameContainer">
+      <!-- Header Section -->
+      <div class="game-header">
+        <h1 class="game-title">SNAKE GAME</h1>
+      </div>
+
+      <!-- Score Display -->
+      <div class="score-panel">
+        <div class="score-box">
+          <span class="score-label">SCORE:</span>
+          <span id="scoreText" class="score-value">0</span>
+        </div>
+        <div class="score-box best-score">
+          <span class="score-label">BEST:</span>
+          <span id="bestScore" class="score-value">0</span>
+        </div>
+      </div>
+
+      <!-- Game Canvas -->
+      <div class="canvas-wrapper">
+        <canvas id="gameBoard" height="400" width="400"></canvas>
+      </div>
+
+      <!-- Control Buttons and Arrow Keys in one row -->
+      <div class="controls-wrapper">
+        <button id="startGame" class="retro-btn start-btn">START</button>
+        <div id="controls" class="arrow-controls">
+          <button id="up" class="arrow-btn">⬆</button>
+          <button id="left" class="arrow-btn">⬅</button>
+          <button id="down" class="arrow-btn">⬇</button>
+          <button id="right" class="arrow-btn">➡</button>
+        </div>
+        <button id="resetBtn" class="retro-btn reset-btn">RESET</button>
       </div>
     </div>
-    <br>
   </div>
 
-  <img id="gameOverImg" src="kushina.jpg" style="display: none;"  >
+  <img id="gameOverImg" src="kushina.jpg" style="display: none;" alt="Game Over" />
 
   <script src="script.js"></script>
 </body>
 </html>
-

@@ -1,83 +1,339 @@
-/* Page setup */
+/* Import retro pixel font */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* CSS Variables - Retro 60s Color Palette */
+:root {
+  --red-60s: #C33740;
+  --tan-60s: #D7A278;
+  --cream-60s: #E3D5B8;
+  --teal-60s: #679499;
+  --brown-60s: #69433A;
+  --background-dark: #1a1a1a;
+  --text-light: #E3D5B8;
+}
+
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
 body {
   margin: 0;
   padding: 0;
-  background-color: #111; /* dark background */
+  background: var(--brown-60s);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  font-family: 'Press Start 2P', monospace; /* pixel-style font */
-  color: #8e2e41; /* green text like retro terminals */
+  min-height: 100vh;
+  font-family: 'Press Start 2P', monospace;
+  color: var(--cream-60s);
+  overflow: hidden;
+  position: relative;
 }
 
-/* Import pixel font from Google Fonts */
-
-/* Game canvas styling */
-canvas#gameBoard {
-  background-color: #000; /* black game area */
-  border: 4px solid #8e2e41; /* glowing green border */
-  box-shadow: 0 0 15px #8e2e41; /* outer glow */
+/* Animated diagonal stripes background */
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 20px,
+    rgba(195, 55, 64, 0.1) 20px,
+    rgba(195, 55, 64, 0.1) 40px
+  );
+  animation: moveStripes 20s linear infinite;
+  z-index: 0;
+  pointer-events: none;
 }
 
-/* Optional: UI area like score or buttons */
-#scoreBoard {
-  position: absolute;
-  top: 20px;
+@keyframes moveStripes {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(56.57px, 56.57px);
+  }
+}
+
+/* Animated dots overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle, rgba(215, 162, 120, 0.15) 1px, transparent 1px);
+  background-size: 30px 30px;
+  animation: moveDots 15s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes moveDots {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 30px 30px;
+  }
+}
+
+/* Main Container */
+.retro-container {
+  position: relative;
+  max-width: 550px;
+  width: 100%;
+  background: var(--background-dark);
+  border: 6px solid var(--red-60s);
+  padding: 20px;
+  z-index: 1;
+}
+
+/* Game Container */
+#gameContainer {
   text-align: center;
-  font-size: 14px;
-  color: #8e2e41;
-  text-shadow: 0 0 5px #8e2e41;
 }
 
-
-#gameContainer{
-  text-align: center;
-}
-#gameBoard{
-  border: black 3px solid;
+/* Header Styling */
+.game-header {
+  margin-bottom: 15px;
 }
 
-#scoreText{ 
-  font-size: 30px;
-}
-#resetBtn , #startGame{
-  font-family: "Permanent Marker" , cursive;
+.game-title {
   font-size: 22px;
-  border: 4x black;
-  border-radius: 15px;
-  height: 50px;
-  width: 100px;
-  cursor : pointer;
-  margin-left: 150px;
-  margin-right: 150px;
-
-
+  color: var(--red-60s);
+  margin-bottom: 5px;
+  letter-spacing: 2px;
 }
 
-#controls {
+/* Score Panel */
+.score-panel {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.score-box {
+  background: var(--brown-60s);
+  border: 3px solid var(--tan-60s);
+  padding: 8px 20px;
+  min-width: 140px;
+  display: flex;
   align-items: center;
-  margin-top: 20px;
-}
-
-#controls > div {
-  display: flex;
+  justify-content: center;
   gap: 10px;
-  margin-top: 5px;
 }
 
-#controls button {
-  font-size: 24px;
-  padding: 10px 15px;
-  border-radius: 8px;
-  border: none;
-  background-color: #444;
-  color: white;
+.best-score {
+  border-color: var(--teal-60s);
+}
+
+.score-label {
+  font-size: 10px;
+  color: var(--cream-60s);
+  letter-spacing: 1px;
+}
+
+.score-value {
+  font-size: 18px;
+  color: var(--cream-60s);
+}
+
+/* Canvas Wrapper */
+.canvas-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+/* Game Board Canvas */
+#gameBoard {
+  background: #000000;
+  border: 4px solid var(--teal-60s);
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* Controls Wrapper - Single Row Layout */
+.controls-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: nowrap;
+}
+
+/* Retro Buttons */
+.retro-btn {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  padding: 12px 20px;
+  border: 3px solid var(--tan-60s);
+  background: var(--brown-60s);
+  color: var(--cream-60s);
   cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
-#controls button:active {
-  background-color: #222;
+.retro-btn:hover {
+  background: var(--tan-60s);
+  color: var(--background-dark);
+  transform: translateY(-2px);
+}
+
+.retro-btn:active {
+  transform: translateY(0);
+}
+
+.retro-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.start-btn {
+  border-color: var(--teal-60s);
+}
+
+.start-btn:hover {
+  background: var(--teal-60s);
+}
+
+.reset-btn {
+  border-color: var(--red-60s);
+}
+
+.reset-btn:hover {
+  background: var(--red-60s);
+}
+
+/* Arrow Controls - Compact Grid */
+.arrow-controls {
+  display: grid;
+  grid-template-columns: repeat(3, 45px);
+  grid-template-rows: repeat(2, 45px);
+  gap: 5px;
+}
+
+.arrow-btn {
+  font-size: 20px;
+  border: 3px solid var(--teal-60s);
+  background: var(--background-dark);
+  color: var(--cream-60s);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#up {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+#left {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+#down {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+#right {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.arrow-btn:hover {
+  background: var(--teal-60s);
+  color: var(--background-dark);
+}
+
+.arrow-btn:active {
+  transform: scale(0.95);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  .retro-container {
+    padding: 15px;
+    border-width: 4px;
+  }
+
+  .game-title {
+    font-size: 16px;
+  }
+
+  #gameBoard {
+    width: 100%;
+    height: auto;
+  }
+
+  .score-panel {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .score-box {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .controls-wrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .retro-btn {
+    font-size: 10px;
+    padding: 10px 15px;
+    width: 100%;
+  }
+
+  .arrow-controls {
+    grid-template-columns: repeat(3, 50px);
+    grid-template-rows: repeat(2, 50px);
+  }
+}
+
+@media (max-height: 750px) {
+  .retro-container {
+    padding: 15px;
+  }
+
+  .game-header {
+    margin-bottom: 10px;
+  }
+
+  .score-panel {
+    margin-bottom: 10px;
+  }
+
+  .canvas-wrapper {
+    margin-bottom: 10px;
+  }
+
+  #gameBoard {
+    height: 350px;
+    width: 350px;
+  }
 }
